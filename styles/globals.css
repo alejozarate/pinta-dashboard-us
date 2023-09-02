@@ -1,0 +1,63 @@
+@font-face {
+	font-family: 'Fictional';
+	src: url('/fonts/FictionalUltraBold.otf');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fibra One';
+	src: url('/fonts/FibraOneRegular.woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fibra One';
+	src: url('/fonts/FibraOneSemiBold.woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fibra One';
+	src: url('/fonts/FibraOneBold.woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+html,
+body {
+	font-size: 18px;
+	color: #252529;
+	background: #f2f4f7;
+}
+
+@media all and (max-width: 950px) {
+	html,
+	body {
+		font-size: 16px;
+	}
+}
+
+* {
+	font-family: 'Fibra One', 'sans-serif';
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.external-link .icon {
+	opacity: 0;
+}
+
+.external-link:hover .icon {
+	opacity: 1;
+}

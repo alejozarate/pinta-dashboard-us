@@ -88,7 +88,7 @@ const Sidebar = ({ showMenu, setShowMenu }: ISidebar) => {
 							<div>
 								<SidebarLink
 									icon="user"
-									label="Configuración"
+									label="Settings"
 									active={
 										router.pathname === '/user/settings'
 									}

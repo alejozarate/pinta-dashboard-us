@@ -36,7 +36,7 @@ const PrintChart = () => {
 		labels: pntUsage.map((e) => e.day),
 		datasets: [
 			{
-				label: 'Cantidad de Pintas',
+				label: 'Pintas amount',
 				data: pntUsage.map((e) => e.amount),
 				backgroundColor: ['#52E0BE'],
 				borderColor: ['#15BB93'],

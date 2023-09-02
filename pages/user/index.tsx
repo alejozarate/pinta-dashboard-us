@@ -79,7 +79,7 @@ const Home: NextPage = () => {
 					<div className="flex items-center justify-center mt-6">
 						<Link href="/user/activity">
 							<span className="text-grayText font-bold cursor-pointer">
-								Ver actividad completa
+								See all activity
 							</span>
 						</Link>
 					</div>
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
 								<Information />
 							</div>
 							<Label className="font-bold text-black">
-								Información general
+								General information
 							</Label>
 						</div>
 						<div className="flex flex-col gap-3">
@@ -111,7 +111,7 @@ const Home: NextPage = () => {
 											: '-'}
 									</Label>
 									<Label className="text-grayText">
-										Pintas hoy
+										PNT today
 									</Label>
 								</div>
 							</div>
@@ -133,7 +133,7 @@ const Home: NextPage = () => {
 										/ {quantity || '-'}
 									</Label>
 									<Label className="text-grayText">
-										Pintas totales
+										PNT total
 									</Label>
 								</div>
 							</div>

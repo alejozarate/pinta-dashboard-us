@@ -59,7 +59,7 @@ const Activity: NextPage = () => {
 								/>
 							</svg>
 						</div>
-						<div className="font-bold">Cargando</div>
+						<div className="font-bold">Loading</div>
 					</div>
 				) : (
 					<Card>
@@ -68,7 +68,7 @@ const Activity: NextPage = () => {
 								<TransactionIcon />
 							</div>
 							<div className="text-primary font-bold">
-								Historial de transacciones
+								Transaction history
 							</div>
 						</div>
 						<TransactionList transactions={transactions} />

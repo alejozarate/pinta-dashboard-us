@@ -115,15 +115,15 @@ const Update: NextPage = (props: any) => {
 								<RankingIcon />
 							</div>
 							<div className="font-bold text-primary">
-								Actualizar usuario
+								Update user
 							</div>
 						</div>
 						<div className="flex mobile:flex-col gap-20 mobile:gap-0 p-6">
 							<div className="flex flex-1 flex-col gap-6">
 								<div>
 									<Input
-										label="Nombre del dashboard"
-										placeholder="Ingrese el nombre"
+										label="Dashboard name"
+										placeholder="Enter the name"
 										type={'text'}
 										onChange={(e: any) => {
 											setLabel(e.target.value)
@@ -134,8 +134,8 @@ const Update: NextPage = (props: any) => {
 								</div>
 								<div>
 									<Input
-										label="Email del usuario"
-										placeholder="Ingrese el email"
+										label="User email"
+										placeholder="Enter the email"
 										type={'email'}
 										onChange={(e: any) => {
 											setEmail(e.target.value)
@@ -146,8 +146,8 @@ const Update: NextPage = (props: any) => {
 								</div>
 								<div>
 									<Input
-										label="Cambiar contraseña"
-										placeholder="Ingrese la contraseña"
+										label="Change password"
+										placeholder="Enter the password"
 										type={'text'}
 										onChange={(e: any) => {
 											setPassword(e.target.value)
@@ -158,8 +158,8 @@ const Update: NextPage = (props: any) => {
 								</div>
 								<div>
 									<Input
-										label="Confirmar contraseña"
-										placeholder="Ingrese la contraseña"
+										label="Confirm password"
+										placeholder="Enter the password"
 										type={'text'}
 										onChange={(e: any) => {
 											setConfirmPassword(e.target.value)
@@ -172,8 +172,8 @@ const Update: NextPage = (props: any) => {
 							<div className="flex flex-1 flex-col gap-6 mobile:mt-6">
 								<div>
 									<Input
-										label="Address del usuario"
-										placeholder="Ingrese el address"
+										label="User address"
+										placeholder="Enter the address"
 										type={'text'}
 										onChange={(e: any) => {
 											setUserAddress(e.target.value)
@@ -192,8 +192,8 @@ const Update: NextPage = (props: any) => {
 								</div>
 								<div>
 									<Input
-										label="Cantidad de PNT disponible"
-										placeholder="Cantidad de PNT disponible"
+										label="Amount of available PNT"
+										placeholder="Amount of available PNT"
 										type={'number'}
 										min="0"
 										onChange={(e: any) => {
@@ -206,11 +206,11 @@ const Update: NextPage = (props: any) => {
 								<div>
 									<div className="mb-4 flex flex-col gap-1">
 										<Label className="font-bold">
-											Imagen del dashboard
+											Dashboard image
 										</Label>
 										<Label>
 											<span className="text-sm text-grayText">
-												Recomendado 400x150px (.png)
+												Recommended 400x150px (.png)
 											</span>
 										</Label>
 									</div>
@@ -276,8 +276,8 @@ const Update: NextPage = (props: any) => {
 													{...dragProps}
 												>
 													{imageList.length === 0
-														? `Subir imagen`
-														: `Eliminar`}
+														? `Upload image`
+														: `Remove`}
 												</button>
 											</div>
 										)}
@@ -299,10 +299,10 @@ const Update: NextPage = (props: any) => {
 								onClick={() => updateUser()}
 							>
 								{status === 'OK'
-									? 'Usuario actualizado'
+									? 'User updated'
 									: !loading
-									? 'Actualizar cuenta'
-									: 'Actualizando...'}
+									? 'Update account'
+									: 'Updating...'}
 							</div>
 						</div>
 					</Card>

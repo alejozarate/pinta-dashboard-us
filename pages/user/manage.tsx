@@ -46,14 +46,12 @@ const Manage: NextPage = () => {
 					<div className="text-grayIcons">
 						<RankingIcon />
 					</div>
-					<div className="font-bold text-primary">
-						Usuarios activos
-					</div>
+					<div className="font-bold text-primary">Active users</div>
 				</div>
 				<div className="">
 					{users.length === 0 && (
 						<div className="items-center justify-center p-6 text-center">
-							Todavía no existen usuarios creados
+							There are no active users
 						</div>
 					)}
 					{users &&
@@ -94,7 +92,7 @@ const Manage: NextPage = () => {
 											}}
 										>
 											<Button className="text-grayText font-bold px-0">
-												Editar
+												Edit
 											</Button>
 										</Link>
 									</div>
@@ -105,7 +103,7 @@ const Manage: NextPage = () => {
 						<div className="">
 							<Link href={'/user/create'}>
 								<Button className="text-white bg-[#034030] opacity-100 py-4 px-12 transition-all font-bold">
-									Crear usuario
+									Create user
 								</Button>
 							</Link>
 						</div>

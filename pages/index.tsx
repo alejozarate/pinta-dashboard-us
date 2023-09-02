@@ -97,8 +97,8 @@ const Home: NextPage = () => {
 					</div>
 					<div>
 						<Input
-							label="Contraseña"
-							placeholder="Ingrese su contraseña"
+							label="Password"
+							placeholder="Enter your password"
 							type={'password'}
 							onChange={(e: any) => {
 								setPassword(e.target.value)
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
 						}`}
 						onClick={() => login()}
 					>
-						Ingresar
+						Log in
 					</div>
 				</div>
 			</div>

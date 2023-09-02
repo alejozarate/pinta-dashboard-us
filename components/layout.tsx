@@ -9,10 +9,10 @@ import { useTransactions } from '../services/transactions'
 import { useSession } from '../services/session'
 
 const ROUTES_NAMES: Record<any, string> = {
-	'/user': 'Inicio',
-	'/user/activity': 'Actividad',
+	'/user': 'Home',
+	'/user/activity': 'Activity',
 	'/user/ranking': 'Ranking',
-	'/user/manage': 'Administración',
+	'/user/manage': 'Admin',
 }
 
 interface ISidebar {
@@ -49,7 +49,7 @@ const Sidebar = ({ showMenu, setShowMenu }: ISidebar) => {
 						<div>
 							<SidebarLink
 								icon="home"
-								label="Inicio"
+								label="Home"
 								active={router.pathname === '/user'}
 							/>
 						</div>
@@ -58,7 +58,7 @@ const Sidebar = ({ showMenu, setShowMenu }: ISidebar) => {
 						<div>
 							<SidebarLink
 								icon="activity"
-								label="Actividad"
+								label="Activity"
 								active={router.pathname === '/user/activity'}
 							/>
 						</div>
@@ -77,7 +77,7 @@ const Sidebar = ({ showMenu, setShowMenu }: ISidebar) => {
 							<div>
 								<SidebarLink
 									icon="user"
-									label="Administración"
+									label="Admin"
 									active={router.pathname === '/user/manage'}
 								/>
 							</div>
@@ -97,7 +97,7 @@ const Sidebar = ({ showMenu, setShowMenu }: ISidebar) => {
 						</Link>
 					)}
 					<div onClick={() => logout()}>
-						<SidebarLink icon="logout" label="Cerrar sesión" />
+						<SidebarLink icon="logout" label="Logout" />
 					</div>
 				</div>
 			</div>
@@ -165,7 +165,7 @@ const Layout = ({ children }: ILayout) => {
 								<Refresh />
 							</div>
 							<Label className="font-bold text-black mobile:hidden">
-								Refrescar
+								Refresh
 							</Label>
 						</div>
 					</div>

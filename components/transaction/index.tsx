@@ -37,14 +37,14 @@ const displayDayLabel = (hexTimestamp: string) => {
 	const currentDay = currentDate.getDate()
 	if (currentDay > transactionDay) {
 		if (currentDay - transactionDay === 1) {
-			return 'Ayer'
+			return 'Yesterday'
 		}
 	} else if (currentDay < transactionDay) {
 		if (transactionDay - currentDay === transactionDay - 1) {
-			return 'Ayer'
+			return 'Yesterday'
 		}
 	} else {
-		return 'Hoy'
+		return 'Today'
 	}
 
 	return `${date.getDate()}/${date.getMonth() + 1}`
@@ -75,7 +75,7 @@ const Transaction = ({ transaction, lastTransaction }: ITransaction) => {
 					<div className="text-lightPrimary">
 						<TransactionIcon />
 					</div>
-					<Label className="font-bold">Última transacción</Label>
+					<Label className="font-bold">Last transaction</Label>
 				</div>
 			)}
 			<div className="flex items-center justify-between font-bold text-black">
@@ -94,7 +94,7 @@ const Transaction = ({ transaction, lastTransaction }: ITransaction) => {
 						)}
 						<div>
 							{transaction.tokenId
-								? `Voucher Comida`
+								? `Food voucher`
 								: `${parsedPintas} ${
 										parsedPintas === 1 ? 'Pinta' : 'Pintas'
 								  }`}
@@ -165,7 +165,7 @@ export const TransactionLoader = ({ lastTransaction }: ITransactionLoader) => {
 							<TransactionIcon />
 						</div>
 						<Label className="font-bold text-loading">
-							Última transacción
+							Last transaction
 						</Label>
 					</div>
 				</div>

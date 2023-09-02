@@ -63,15 +63,15 @@ const Settings: NextPage = () => {
 								<RankingIcon />
 							</div>
 							<div className="font-bold text-primary">
-								Modificar contraseña
+								Modify password
 							</div>
 						</div>
 						<div className="flex mobile:flex-col gap-20 mobile:gap-0 p-6">
 							<div className="flex flex-1 flex-col gap-6">
 								<div>
 									<Input
-										label="Nueva contraseña"
-										placeholder="Ingresa la nueva contraseña"
+										label="New password"
+										placeholder="Enter the new password"
 										type={'password'}
 										onChange={(e: any) => {
 											setPassword(e.target.value)
@@ -82,8 +82,8 @@ const Settings: NextPage = () => {
 								</div>
 								<div>
 									<Input
-										label="Confirma la contraseña"
-										placeholder="Confirma la contraseña"
+										label="Confirm password"
+										placeholder="Confirm password"
 										type={'password'}
 										onChange={(e: any) => {
 											setConfirmPassword(e.target.value)
@@ -108,10 +108,10 @@ const Settings: NextPage = () => {
 								onClick={() => updatePassword()}
 							>
 								{status === 'OK'
-									? 'Contraseña actualizada'
+									? 'Password updated'
 									: !loading
-									? 'Actualizar contraseña'
-									: 'Actualizando...'}
+									? 'Update password'
+									: 'Updating...'}
 							</div>
 						</div>
 					</Card>

@@ -186,8 +186,8 @@ const Create: NextPage = () => {
 								</div>
 								<div>
 									<Input
-										label="Cantidad de PNT disponible"
-										placeholder="Cantidad de PNT disponible"
+										label="Amount of available PNT"
+										placeholder="Amount of available PNT"
 										type={'number'}
 										min="0"
 										onChange={(e: any) => {

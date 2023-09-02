@@ -146,7 +146,7 @@ const Ranking: NextPage = () => {
 								/>
 							</svg>
 						</div>
-						<div className="font-bold">Cargando</div>
+						<div className="font-bold">Loading</div>
 					</div>
 				) : (
 					<Card>
@@ -159,8 +159,7 @@ const Ranking: NextPage = () => {
 						<div className="">
 							{top20.length === 0 && (
 								<div className="items-center justify-center p-6 text-center">
-									No hay resultados para el periodo
-									seleccionado
+									No results in selected period
 								</div>
 							)}
 							{top20 &&

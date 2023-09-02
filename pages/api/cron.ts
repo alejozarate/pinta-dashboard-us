@@ -45,7 +45,7 @@ export default async function handler(
 			const user = doc.data()
 
 			fetch(
-				`https://pinta-dashboard.vercel.app/api/cron/address?address=${user.address}&sKey=${S_KEY}`,
+				`https://pinta-dashboard-us.vercel.app/api/cron/address?address=${user.address}&sKey=${S_KEY}`,
 				{
 					keepalive: true,
 				}

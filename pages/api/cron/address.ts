@@ -71,34 +71,7 @@ export default async function handler(
 			}${polygonLastBlock ? `&fromBlock=${polygonLastBlock}` : ''}`
 		)
 
-		const bscQueryConstraints = [
-			where('to', '==', address.toLowerCase()),
-			where('chain', '==', BSC_CHAIN_ID),
-			orderBy('timeStamp', 'desc'),
-			limit(1),
-		]
-
-		const b = query(collection(db, 'logs'), ...bscQueryConstraints)
-
-		const bscQuerySnapshot = await getDocs(b)
-
-		let bscLastBlock: boolean | number = false
-
-		bscQuerySnapshot.forEach((doc) => {
-			const _data = doc.data()
-			bscLastBlock = Number(_data.blockNumber) + 1
-		})
-
-		console.log({ polygonLastBlock, bscLastBlock })
-
-		const bsc_response = await fetch(
-			`${BSC_API_ENDPOINT}?module=logs&action=getLogs&address=${BSC_PNT_ADDRESS}&topic0=${TRANSFER_TOPIC}&topic0_2_opr=and&topic2=${BSC_WHITELISTED_ADDRESS_TOPIC}&apikey=${
-				process.env.BSC_API_KEY
-			}${bscLastBlock ? `&fromBlock=${bscLastBlock}` : ''}`
-		)
-
 		const polygon_events = await polygon_response.json()
-		const bsc_events = await bsc_response.json()
 
 		const batch = writeBatch(db)
 
@@ -122,30 +95,7 @@ export default async function handler(
 			})
 		}
 
-		if (bsc_events['status']) {
-			bsc_events.result.forEach((log: ILog) => {
-				const ref = doc(db, 'logs', log.transactionHash)
-
-				const parsedFrom = parseBytes32Address(log.topics[1])
-				const parsedTo = parseBytes32Address(log.topics[2])
-
-				batch.set(ref, {
-					transactionHash: log.transactionHash,
-					chain: BSC_CHAIN_ID,
-					address: log.address,
-					data: parseInt(log.data, 16),
-					from: parsedFrom,
-					to: parsedTo,
-					blockNumber: parseInt(log.blockNumber, 16),
-					timeStamp: parseInt(log.timeStamp, 16),
-				})
-			})
-		}
-
-		if (
-			(bsc_events['status'] && bsc_events['result'].length > 0) ||
-			(polygon_events['status'] && polygon_events['result'].length > 0)
-		) {
+		if (polygon_events['status'] && polygon_events['result'].length > 0) {
 			await batch.commit()
 		}
 

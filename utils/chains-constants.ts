@@ -1,5 +1,5 @@
 export const POLYGON_API_ENDPOINT = 'https://api.polygonscan.com/api'
-export const POLYGON_PNT_ADDRESS = '0x9Ae69fDfF2FA97e34B680752D8E70dfD529Ea6ca'
+export const POLYGON_PNT_ADDRESS = '0x17e5F55Bd60758fAbf5957816144Df167e46b9c0'
 export const POLYGON_CHAIN_ID = 137
 
 export const BSC_API_ENDPOINT = 'https://api.bscscan.com/api'

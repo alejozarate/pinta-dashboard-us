@@ -8,8 +8,6 @@ import {
 } from 'firebase/firestore'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
-	BSC_API_ENDPOINT,
-	BSC_PNT_ADDRESS,
 	POLYGON_API_ENDPOINT,
 	POLYGON_PNT_ADDRESS,
 } from '../../utils/chains-constants'
@@ -30,21 +28,13 @@ export default async function handler(
 		const polygon_response = await fetch(
 			`${POLYGON_API_ENDPOINT}?module=account&action=tokenbalance&tag=latest&contractaddress=${POLYGON_PNT_ADDRESS}&address=${address}&apikey=${process.env.POLYGON_API_KEY}`
 		)
-		const bsc_response = await fetch(
-			`${BSC_API_ENDPOINT}?module=account&action=tokenbalance&tag=latest&contractaddress=${BSC_PNT_ADDRESS}&address=${address}&apikey=${process.env.BSC_API_KEY}`
-		)
 
 		const polygon_balance = await polygon_response.json()
-		const bsc_balance = await bsc_response.json()
 
 		let totalBalance = 0
 
 		if (polygon_balance['status'] && polygon_balance['result']) {
 			totalBalance += Number(polygon_balance['result'])
-		}
-
-		if (bsc_balance['status'] && bsc_balance['result']) {
-			totalBalance += Number(bsc_balance['result'])
 		}
 
 		const timestamp = Date.now() // divide by 1000 to get the Unix timestamp in seconds

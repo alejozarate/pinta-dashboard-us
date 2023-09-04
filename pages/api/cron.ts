@@ -10,9 +10,6 @@ import {
 } from 'firebase/firestore'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
-	BSC_API_ENDPOINT,
-	BSC_CHAIN_ID,
-	BSC_PNT_ADDRESS,
 	createAddressTopic,
 	parseBytes32Address,
 	POLYGON_API_ENDPOINT,

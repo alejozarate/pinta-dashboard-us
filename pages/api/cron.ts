@@ -12,7 +12,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
 	createAddressTopic,
 	parseBytes32Address,
-	POLYGON_API_ENDPOINT,
 	POLYGON_CHAIN_ID,
 	POLYGON_PNT_ADDRESS,
 } from '../../utils/chains-constants'
@@ -29,6 +28,7 @@ export default async function handler(
 	try {
 		const { sKey } = req.query
 		const S_KEY = process.env.S_KEY
+		return res.status(200).json({ message: 'Cron bypassed' })
 		if (!sKey || sKey !== S_KEY)
 			return res.status(404).json({ message: 'Bad request' })
 

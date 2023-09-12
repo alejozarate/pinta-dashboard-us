@@ -12,13 +12,16 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
 	createAddressTopic,
 	parseBytes32Address,
-	POLYGON_API_ENDPOINT,
 	POLYGON_CHAIN_ID,
 	POLYGON_PNT_ADDRESS,
 } from '../../utils/chains-constants'
 import { convertTimestamps, getFirebaseDB } from '../../utils/firebase-db'
 // @ts-ignore
 import { verify_session } from '../../utils/verify-jwt'
+import onChainProvider, {
+	DBLog,
+	defaultProvider,
+} from '../../services/onchain/provider'
 
 interface ILog {
 	address: string
@@ -62,39 +65,28 @@ export default async function handler(
 			polygonLastBlock = Number(_data.blockNumber) + 1
 		})
 
-		const polygon_response = await fetch(
-			`${POLYGON_API_ENDPOINT}?module=logs&action=getLogs&address=${POLYGON_PNT_ADDRESS}&topic0=${TRANSFER_TOPIC}&topic0_2_opr=and&topic2=${POLYGON_WHITELISTED_ADDRESS_TOPIC}&apikey=${
-				process.env.POLYGON_API_KEY
-			}${polygonLastBlock ? `&fromBlock=${polygonLastBlock}` : ''}`
-		)
-
-		let bscLastBlock: boolean | number = false
-
-		const polygon_events = await polygon_response.json()
+		const polygon_events = await onChainProvider[
+			defaultProvider
+		].getLastTxs(polygonLastBlock, address)
 
 		const batch = writeBatch(db)
 
-		if (polygon_events['status']) {
-			polygon_events.result.forEach((log: ILog) => {
-				const ref = doc(db, 'logs', log.transactionHash)
+		polygon_events.forEach((log: DBLog) => {
+			const ref = doc(db, 'logs', log.transactionHash)
 
-				const parsedFrom = parseBytes32Address(log.topics[1])
-				const parsedTo = parseBytes32Address(log.topics[2])
-
-				batch.set(ref, {
-					transactionHash: log.transactionHash,
-					chain: POLYGON_CHAIN_ID,
-					address: log.address,
-					data: parseInt(log.data, 16),
-					from: parsedFrom,
-					to: parsedTo,
-					blockNumber: parseInt(log.blockNumber, 16),
-					timeStamp: parseInt(log.timeStamp, 16),
-				})
+			batch.set(ref, {
+				transactionHash: log.transactionHash,
+				chain: log.chain,
+				address: log.address,
+				data: log.data,
+				from: log.from,
+				to: log.to,
+				blockNumber: log.blockNumber,
+				timeStamp: log.timeStamp,
 			})
-		}
+		})
 
-		if (polygon_events['status'] && polygon_events['result'].length > 0) {
+		if (polygon_events.length > 0) {
 			await batch.commit()
 		}
 

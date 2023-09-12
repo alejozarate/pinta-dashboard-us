@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@ensdomains/ensjs": "3.0.0-alpha.39",
+		"alchemy-sdk": "^2.10.1",
 		"chart.js": "^4.0.1",
 		"ethers": "^5.7.1",
 		"firebase": "^9.18.0",

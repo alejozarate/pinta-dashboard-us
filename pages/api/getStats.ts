@@ -7,13 +7,12 @@ import {
 	limit,
 } from 'firebase/firestore'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {
-	POLYGON_API_ENDPOINT,
-	POLYGON_PNT_ADDRESS,
-} from '../../utils/chains-constants'
 import { convertTimestamps, getFirebaseDB } from '../../utils/firebase-db'
 // @ts-ignore
 import { verify_session } from '../../utils/verify-jwt'
+import onChainProvider, {
+	defaultProvider,
+} from '../../services/onchain/provider'
 
 export default async function handler(
 	req: NextApiRequest,
@@ -25,17 +24,13 @@ export default async function handler(
 
 		const address = decoded.address.toLowerCase()
 
-		const polygon_response = await fetch(
-			`${POLYGON_API_ENDPOINT}?module=account&action=tokenbalance&tag=latest&contractaddress=${POLYGON_PNT_ADDRESS}&address=${address}&apikey=${process.env.POLYGON_API_KEY}`
-		)
-
-		const polygon_balance = await polygon_response.json()
+		const polygon_balance = await onChainProvider[
+			defaultProvider
+		].getBalance(address)
 
 		let totalBalance = 0
 
-		if (polygon_balance['status'] && polygon_balance['result']) {
-			totalBalance += Number(polygon_balance['result'])
-		}
+		totalBalance += polygon_balance
 
 		const timestamp = Date.now() // divide by 1000 to get the Unix timestamp in seconds
 

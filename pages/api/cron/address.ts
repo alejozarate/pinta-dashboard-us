@@ -12,7 +12,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
 	createAddressTopic,
 	parseBytes32Address,
-	POLYGON_API_ENDPOINT,
+	POLYGONSCAN_POLYGON_API_ENDPOINT,
 	POLYGON_CHAIN_ID,
 	POLYGON_PNT_ADDRESS,
 } from '../../../utils/chains-constants'
@@ -63,7 +63,7 @@ export default async function handler(
 		})
 
 		const polygon_response = await fetch(
-			`${POLYGON_API_ENDPOINT}?module=logs&action=getLogs&address=${POLYGON_PNT_ADDRESS}&topic0=${TRANSFER_TOPIC}&topic0_2_opr=and&topic2=${POLYGON_WHITELISTED_ADDRESS_TOPIC}&apikey=${
+			`${POLYGONSCAN_POLYGON_API_ENDPOINT}?module=logs&action=getLogs&address=${POLYGON_PNT_ADDRESS}&topic0=${TRANSFER_TOPIC}&topic0_2_opr=and&topic2=${POLYGON_WHITELISTED_ADDRESS_TOPIC}&apikey=${
 				process.env.POLYGON_API_KEY
 			}${polygonLastBlock ? `&fromBlock=${polygonLastBlock}` : ''}`
 		)
